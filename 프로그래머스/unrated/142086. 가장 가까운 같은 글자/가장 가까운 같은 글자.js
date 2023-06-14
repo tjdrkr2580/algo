@@ -1,16 +1,11 @@
 function solution(s) {
-    var answer = [];
-    let length = s.length;
-    for(let i = 0 ; i < length ; i++) {
-        let sliceS = s.slice(0, i + 1);
-        let lastChar = sliceS.substr(i);
-        sliceS = sliceS.substring(0, sliceS.length - 1);
-        if(sliceS.lastIndexOf(lastChar) !== -1) {
-            answer.push(i - sliceS.lastIndexOf(lastChar));
-        }
-        else {
-            answer.push(-1);    
-        }
+    let answer = new Array(s.length).fill(-1);
+    let hash = {};
+    for(let i = 0 ; i < s.length ; i++){
+        let char = s[i];
+        console.log()
+        if(char in hash) answer[i] = i - hash[char];
+        hash[char] = i;
     }
     return answer;
 }
